@@ -49,9 +49,9 @@ namespace ConsoleApp47
 
                     case 2:
                         Console.WriteLine("Оберіть студента");
-                        Console.WriteLine("1.Оля");
-                        Console.WriteLine("2.Ліза");
-                        Console.WriteLine("3.Настя");
+                        Console.WriteLine("1.Оля - 8 варіант");
+                        Console.WriteLine("2.Ліза - 13 варіант");
+                        Console.WriteLine("3.Настя - 10 варіант");
                         int studentChoice2 = int.Parse(Console.ReadLine());
                         switch (studentChoice2)
                         {
