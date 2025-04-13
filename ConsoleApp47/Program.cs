@@ -27,6 +27,7 @@ namespace ProjectForLaba4
                     Console.ReadLine();
                     continue;
                 }
+
                 switch (choice)
                 {
                     case 1:
@@ -41,7 +42,7 @@ namespace ProjectForLaba4
 
                         if (!int.TryParse(Console.ReadLine(), out int studentChoice1))
                         {
-                            Console.WriteLine("Некоректний ввід!");
+                            Console.WriteLine("Некоректний вибір!");
                             break;
                         }
 
@@ -49,10 +50,8 @@ namespace ProjectForLaba4
                         {
                             case 1:
                                 Console.Clear();
-                                Console.WriteLine("Виконую завдання Олі");
-                                Methods.Block1Olia();
-                                Console.WriteLine("\nНатисніть Enter для продовження...");
-                                Console.ReadLine();
+                                Console.WriteLine("Перехід до меню завдань Олі...");
+                                MenuOlia.DisplayMainMenu(); 
                                 break;
                             case 2:
                                 Console.Clear();
@@ -64,7 +63,7 @@ namespace ProjectForLaba4
                                 Console.WriteLine("Перехід до меню завдань Насті...");
                                 isTrue = MenyNastia.MenyForAVFirstBlock();
                                 break;
-                            case 74:
+                            case 4:
                                 Console.WriteLine("Повернення до головного меню...");
                                 break;
                             default:
@@ -72,6 +71,7 @@ namespace ProjectForLaba4
                                 break;
                         }
                         break;
+
                     case 2:
                         Console.Clear();
                         Console.WriteLine("--- Другий блок ---");
@@ -84,24 +84,25 @@ namespace ProjectForLaba4
 
                         if (!int.TryParse(Console.ReadLine(), out int studentChoice2))
                         {
-                            Console.WriteLine("Некоректний ввід!");
+                            Console.WriteLine("Некоректний вибір!");
                             break;
                         }
+
                         switch (studentChoice2)
                         {
                             case 1:
                                 Console.Clear();
-                                Console.WriteLine("Виконую завдання Олі");
+                                Console.WriteLine("Виконую завдання Олі...");
                                 Methods.Block2Olia();
                                 break;
                             case 2:
                                 Console.Clear();
-                                Console.WriteLine("Виконую завдання Лізи");
+                                Console.WriteLine("Виконую завдання Лізи...");
                                 Methods.Block2Lisa();
                                 break;
                             case 3:
                                 Console.Clear();
-                                Console.WriteLine("Виконую завдання Насті");
+                                Console.WriteLine("Виконую завдання Насті...");
                                 Methods.Block2Nastia();
                                 break;
                             case 4:
@@ -117,6 +118,7 @@ namespace ProjectForLaba4
                             Console.ReadLine();
                         }
                         break;
+
                     case 3:
                         Console.Clear();
                         Console.WriteLine("--- Додаткові завдання ---");
@@ -135,7 +137,7 @@ namespace ProjectForLaba4
                 }
 
                 // Пауза в головному меню, тільки якщо не виходимо з програми
-                if (isTrue && choice != 1 && choice != 2 && choice != 3) // Щоб уникнути подвійної паузи після підменю
+                if (isTrue && choice != 1 && choice != 2 && choice != 3) // Уникаємо подвійної паузи
                 {
                     Console.WriteLine("\nНатисніть Enter для продовження...");
                     Console.ReadLine();
