@@ -35,17 +35,11 @@ namespace ConsoleApp47
 
                 results.Add(TestMethod(SequenceBuilder.Input1, n, "Input1 (+= кінець)"));
 
-                if (n <= 20000)
-                    results.Add(TestMethod(SequenceBuilder.Input2, n, "Input2 (+ початок)"));
-                else
-                    results.Add(("Input2 (+ початок)", n, -1));
+                results.Add(TestMethod(SequenceBuilder.Input2, n, "Input2 (+ початок)"));
 
                 results.Add(TestMethod(SequenceBuilder.Input3, n, "Input3 (Append)"));
 
-                if (n <= 100000)
-                    results.Add(TestMethod(SequenceBuilder.Input4, n, "Input4 (Insert)"));
-                else
-                    results.Add(("Input4 (Insert)", n, -1));
+                results.Add(TestMethod(SequenceBuilder.Input4, n, "Input4 (+ початок)"));
             }
 
             Console.WriteLine("\nРезультати:");
@@ -55,13 +49,7 @@ namespace ConsoleApp47
                 string timeDisplay = Time >= 0 ? Time.ToString() : "Пропущено";
                 Console.WriteLine($"{Method,-20}\t{N}\t{timeDisplay}");
             }
-
-            Console.WriteLine("\nПояснення продуктивності:");
-            Console.WriteLine("✅ Input3 — найшвидший, бо використовує StringBuilder.Append");
-            Console.WriteLine("⚠ Input1 та Input2 — повільні через звичайну конкатенацію рядків");
-            Console.WriteLine("⚠ Input4 — повільний через вставку на початок (Insert)");
-
-            Console.WriteLine("\nНатисніть Enter для завершення...");
+            Console.WriteLine("\nНатисніть Enter для завершення");
             Console.ReadLine();
         }
     }
