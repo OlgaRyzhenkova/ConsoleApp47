@@ -61,10 +61,8 @@ namespace ProjectForLaba4
                                 break;
                             case 3:
                                 Console.Clear();
-                                Console.WriteLine("Виконую завдання Насті");
-                                Methods.Block1Nastia();
-                                Console.WriteLine("\nНатисніть Enter для продовження...");
-                                Console.ReadLine();
+                                Console.WriteLine("Перехід до меню завдань Насті...");
+                                isTrue = MenyNastia.MenyForAVFirstBlock();
                                 break;
                             case 74:
                                 Console.WriteLine("Повернення до головного меню...");
