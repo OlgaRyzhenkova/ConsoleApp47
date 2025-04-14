@@ -98,7 +98,7 @@ namespace ProjectForLaba4
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Виконую завдання Лізи...");
-                                Methods.Block2Lisa();
+                                MenyBondBlockSecond.MenyForBondarenkoSecondBlock();
                                 break;
                             case 3:
                                 Console.Clear();
@@ -145,7 +145,7 @@ namespace ProjectForLaba4
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Виконую завдання Лізи...");
-                                Methods.Block2Lisa();
+                                MenyBondBlockSecond.MenyForBondarenkoSecondBlock();
                                 break;
                             case 3:
                                 Console.Clear();
