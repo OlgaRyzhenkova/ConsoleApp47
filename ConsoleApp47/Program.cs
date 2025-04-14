@@ -122,8 +122,48 @@ namespace ProjectForLaba4
                     case 3:
                         Console.Clear();
                         Console.WriteLine("--- Додаткові завдання ---");
-                        Console.WriteLine("\nНатисніть Enter для продовження...");
-                        Console.ReadLine();
+                        Console.WriteLine("Оберіть студента");
+                        Console.WriteLine("1. Оля");
+                        Console.WriteLine("2. Ліза");
+                        Console.WriteLine("3. Настя");
+                        Console.WriteLine("4. Повернутись до головного меню");
+                        Console.Write("Ваш вибір: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out int studentChoice3))
+                        {
+                            Console.WriteLine("Некоректний вибір!");
+                            break;
+                        }
+
+                        switch (studentChoice3)
+                        {
+                            case 1:
+                                Console.Clear();
+                                Console.WriteLine("Виконую завдання Олі...");
+                                Methods.Block2Olia();
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.WriteLine("Виконую завдання Лізи...");
+                                Methods.Block2Lisa();
+                                break;
+                            case 3:
+                                Console.Clear();
+                                Console.WriteLine("Виконую завдання Насті...");
+                                Methods.Block2Nastia();
+                                break;
+                            case 4:
+                                Console.WriteLine("Повернення до головного меню...");
+                                break;
+                            default:
+                                Console.WriteLine("Некоректний вибір студента!");
+                                break;
+                        }
+                        if (studentChoice3 != 4)
+                        {
+                            Console.WriteLine("\nНатисніть Enter для продовження...");
+                            Console.ReadLine();
+                        }
                         break;
 
                     case 0:
