@@ -145,7 +145,7 @@ namespace ProjectForLaba4
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Виконую завдання Лізи...");
-                                MenyBondBlockSecond.MenyForBondarenkoSecondBlock();
+                                //MenyBondBlockSecond.MenyForBondarenkoSecondBlock();
                                 break;
                             case 3:
                                 Console.Clear();
