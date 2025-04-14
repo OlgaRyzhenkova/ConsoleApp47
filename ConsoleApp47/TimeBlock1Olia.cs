@@ -16,10 +16,11 @@ namespace ConsoleApp47
             {
                 Console.WriteLine($"\nТест для n = {n}:");
 
-                MeasureExecutionTime("Version1", n, Methods.Version1);
-                MeasureExecutionTime("Version2", n, Methods.Version2);
-                MeasureExecutionTime("Version3", n, Methods.Version3);
-                MeasureExecutionTime("Version4", n, Methods.Version4);
+
+                MeasureExecutionTime("Version1", n, InputOlia.Version1);
+                MeasureExecutionTime("Version2", n, InputOlia.Version2);
+                MeasureExecutionTime("Version3", n, InputOlia.Version3);
+                MeasureExecutionTime("Version4", n, InputOlia.Version4);
             }
 
             Console.WriteLine("\nНатисніть Enter, щоб повернутися в головне меню...");
