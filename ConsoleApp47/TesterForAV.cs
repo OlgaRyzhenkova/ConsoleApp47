@@ -39,7 +39,7 @@ namespace ConsoleApp47
 
                 results.Add(TestMethod(SequenceBuilder.Input3, n, "Input3 (Append)"));
 
-                results.Add(TestMethod(SequenceBuilder.Input4, n, "Input4 (+ початок)"));
+                results.Add(TestMethod(SequenceBuilder.Input4, n, "Input4 (Insert)"));
             }
 
             Console.WriteLine("\nРезультати:");
