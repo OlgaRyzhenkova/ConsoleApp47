@@ -37,18 +37,15 @@ namespace ConsoleApp47
             }
             return result.ToString();
         }
-        static char ReplaceChar(char c)
+        static char ReplaceChar(char c) => c switch
         {
-            switch (c)
-            {
-                case 'R': return 'K';
-                case 'S': return 'L';
-                case 'T': return 'M';
-                case 'K': return 'R';
-                case 'L': return 'S';
-                case 'M': return 'T';
-                default: return c;
-            }
-        }
+            'R' => 'K',
+            'S' => 'L',
+            'T' => 'M',
+            'K' => 'R',
+            'L' => 'S',
+            'M' => 'T',
+            _ => c
+        };
     }
 }

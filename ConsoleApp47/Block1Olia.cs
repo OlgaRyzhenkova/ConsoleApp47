@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ConsoleApp47
 {
-    partial class Methods
+    class InputOlia
     {
         public static string Block1Olia(int n)
         {

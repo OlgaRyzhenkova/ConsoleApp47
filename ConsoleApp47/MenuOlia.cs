@@ -52,7 +52,7 @@ namespace ConsoleApp47
             Console.WriteLine("Введіть число n для виконання завдання:");
             if (int.TryParse(Console.ReadLine(), out int n) && n > 0)
             {
-                string result = Methods.Block1Olia(n);
+                string result = InputOlia.Block1Olia(n);
                 Console.WriteLine("Результати обчислень:");
                 Console.WriteLine(result);
             }
