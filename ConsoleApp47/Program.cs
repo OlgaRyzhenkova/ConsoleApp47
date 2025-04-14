@@ -150,7 +150,7 @@ namespace ProjectForLaba4
                             case 3:
                                 Console.Clear();
                                 Console.WriteLine("Виконую завдання Насті...");
-                                Methods.Block2Nastia();
+                                AdditionalTasksAV.Run();
                                 break;
                             case 4:
                                 Console.WriteLine("Повернення до головного меню...");
