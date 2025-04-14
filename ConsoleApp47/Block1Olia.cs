@@ -20,7 +20,6 @@ namespace ConsoleApp47
 
             return results.ToString();
         }
-
         public static string Version1(int n)
         {
             string result1 = "";
@@ -30,7 +29,6 @@ namespace ConsoleApp47
             }
             return result1.Trim();
         }
-
         public static string Version2(int n)
         {
             string result2 = "";
@@ -40,7 +38,6 @@ namespace ConsoleApp47
             }
             return result2.Trim();
         }
-
         public static string Version3(int n)
         {
             StringBuilder result3 = new StringBuilder();
@@ -50,7 +47,6 @@ namespace ConsoleApp47
             }
             return result3.ToString().Trim();
         }
-
         public static string Version4(int n)
         {
             StringBuilder result4 = new StringBuilder();

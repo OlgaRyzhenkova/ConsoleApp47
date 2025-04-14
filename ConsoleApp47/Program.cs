@@ -140,7 +140,7 @@ namespace ProjectForLaba4
                             case 1:
                                 Console.Clear();
                                 Console.WriteLine("Виконую завдання Олі...");
-                                Methods.Block2Olia();
+                                DodExerOlia.Menu();
                                 break;
                             case 2:
                                 Console.Clear();
