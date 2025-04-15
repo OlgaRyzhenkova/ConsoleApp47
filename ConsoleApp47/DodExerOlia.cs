@@ -124,8 +124,8 @@ namespace ConsoleApp47
                     string unit = parts[i + 1];
                     if (unit == "м" || unit == "грн")
                     {
-                        parts[i] = NumberToWords(number, unit);      // Число словами з урахуванням роду
-                        parts[i + 1] = UnitToWords(number, unit);     // Слово "метр" або "гривня" в правильній формі
+                        parts[i] = NumberToWords(number, unit);      
+                        parts[i + 1] = UnitToWords(number, unit);  
                     }
                 }
             }
@@ -135,14 +135,12 @@ namespace ConsoleApp47
 
         static string NumberToWords(int number, string unit)
         {
-            // Українські словники
             string[] onesMasculine = { "", "один", "два", "три", "чотири", "п’ять", "шість", "сім", "вісім", "дев’ять" };
             string[] onesFeminine = { "", "одна", "дві", "три", "чотири", "п’ять", "шість", "сім", "вісім", "дев’ять" };
             string[] teens = { "десять", "одинадцять", "дванадцять", "тринадцять", "чотирнадцять", "п’ятнадцять", "шістнадцять", "сімнадцять", "вісімнадцять", "дев’ятнадцять" };
             string[] tens = { "", "", "двадцять", "тридцять", "сорок", "п’ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев’яносто" };
             string[] hundreds = { "", "сто", "двісті", "триста", "чотириста", "п’ятсот", "шістсот", "сімсот", "вісімсот", "дев’ятсот" };
 
-            // Допоміжна функція для формування трійки чисел
             string TripletToWords(int n, bool isFeminine)
             {
                 string[] ones = isFeminine ? onesFeminine : onesMasculine;
@@ -163,7 +161,6 @@ namespace ConsoleApp47
                 return result.Trim();
             }
 
-            // Розбираємо число по розрядах
             int billions = number / 1_000_000_000;
             int millions = (number / 1_000_000) % 1000;
             int thousands = (number / 1000) % 1000;
@@ -191,7 +188,6 @@ namespace ConsoleApp47
             return words.Trim();
         }
 
-        // Повертає правильну форму одиниці виміру ("метр", "метри", "метрів" тощо)
         static string UnitToWords(int number, string unit)
         {
             int lastDigit = number % 10;
@@ -213,7 +209,6 @@ namespace ConsoleApp47
             return unit;
         }
 
-        // Вибирає правильну форму для мільйонів/тисяч/мільярдів
         static string GetForm(int number, string baseWord)
         {
             int lastDigit = number % 10;
