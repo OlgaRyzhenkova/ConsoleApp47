@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
@@ -31,7 +30,7 @@ namespace ConsoleApp47
 
             foreach (int n in nValues)
             {
-                Console.WriteLine($"\n===== Тест для n = {n} =====");
+                Console.WriteLine($"\nТест для n = {n}");
 
                 results.Add(TestMethod(SequenceBuilder.Input1, n, "Input1 (+= кінець)"));
 
