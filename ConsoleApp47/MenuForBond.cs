@@ -20,9 +20,8 @@ namespace ConsoleApp47
                 Console.WriteLine("3. Виконати метод 3 (StringBuilder, Append кінець)");
                 Console.WriteLine("4. Виконати метод 4 (StringBuilder, Insert початок)");
                 Console.WriteLine("5. Запустити повний тест продуктивності");
-                Console.WriteLine("6. Вийти З УСІЄЇ ПРОГРАМИ");
-                Console.WriteLine("7. Повернутись до головного меню");
-                Console.Write("Виберіть опцію (1-7): ");
+                Console.WriteLine("6. Повернутись до головного меню");
+                Console.Write("Виберіть опцію (1-6): ");
 
                 if (!int.TryParse(Console.ReadLine(), out int choice))
                 {
@@ -85,10 +84,6 @@ namespace ConsoleApp47
                             studentTester.Test();
                             break;
                         case 6:
-                            stayInSubMenu = false;
-                            Console.WriteLine("Вихід з програми...");
-                            return false;
-                        case 9:
                             stayInSubMenu = false;
                             Console.WriteLine("Повернення до головного меню...");
                             return true;

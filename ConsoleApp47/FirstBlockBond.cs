@@ -33,7 +33,7 @@ namespace ConsoleApp47
             {
                 Console.WriteLine($"\n===== Тестування для n = {n} =====");
 
-                // Тепер виклики коректні, бо Input.InputsX повертають string
+                // InputsX повертають string
                 MeasureTime(Input.Inputs1, n, "Inputs1 (string, += кінець)");
                 if (n <= 20000)
                 {
