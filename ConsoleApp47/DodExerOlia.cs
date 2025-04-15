@@ -5,9 +5,9 @@ namespace ConsoleApp47
 {
     class DodExerOlia
     {
-       public static void Menu()
+        public static void Menu()
         {
-            while(true)
+            while (true)
             {
                 Console.WriteLine("Виберіть завдання, яке потрібно виконати:");
                 Console.WriteLine("1. Завдання 1");
@@ -16,7 +16,7 @@ namespace ConsoleApp47
                 Console.WriteLine("0. Вихід");
                 Console.Write("Ваш вибір: ");
                 string choice = Console.ReadLine();
-                switch(choice)
+                switch (choice)
                 {
                     case "1":
                         Task1();
@@ -54,16 +54,16 @@ namespace ConsoleApp47
         static bool Balanced(string str)
         {
             int balance = 0;
-            foreach(char ch in str)
+            foreach (char ch in str)
             {
-                if ( ch == '(')
+                if (ch == '(')
                 {
                     balance++;
                 }
                 else if (ch == ')')
                 {
                     balance--;
-                    if ( balance <0)
+                    if (balance < 0)
                     {
                         return false;
                     }
@@ -78,10 +78,10 @@ namespace ConsoleApp47
             string input = Console.ReadLine();
             Console.Write("Введіть шаблон:");
             string pattern = Console.ReadLine();
-            string[] words = input.Split(new[] {' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words = input.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
             string regexPattern = ConvertPatternToRegex(pattern);
             Console.WriteLine("Слова, що відповідають шаблону:");
-            foreach ( string word in words)
+            foreach (string word in words)
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(word, regexPattern))
                 {
@@ -104,7 +104,7 @@ namespace ConsoleApp47
                 }
                 else
                 {
-                    regex.Append(ch);
+                    regex.Append(System.Text.RegularExpressions.Regex.Escape(ch.ToString()));
                 }
             }
             return "^" + regex.ToString() + "$";
@@ -115,6 +115,7 @@ namespace ConsoleApp47
             Console.Write("Введіть рядок: ");
             string input = Console.ReadLine();
             string[] parts = input.Split(' ');
+
             for (int i = 0; i < parts.Length - 1; i++)
             {
                 int number;
@@ -123,34 +124,115 @@ namespace ConsoleApp47
                     string unit = parts[i + 1];
                     if (unit == "м" || unit == "грн")
                     {
-                        parts[i] = NumberToWords(number, unit);
-                        parts[i + 1] = UnitToWords(number, unit);
+                        parts[i] = NumberToWords(number, unit);      // Число словами з урахуванням роду
+                        parts[i + 1] = UnitToWords(number, unit);     // Слово "метр" або "гривня" в правильній формі
                     }
                 }
             }
-             Console.WriteLine("Результат:" + string.Join(" ", parts));
+
+            Console.WriteLine("Результат: " + string.Join(" ", parts));
         }
+
         static string NumberToWords(int number, string unit)
         {
-            if (number == 1) return (unit == "м") ? "один" : "одна";
-            if (number == 2) return (unit == "м") ? "два" : "дві";
-            return number.ToString();
+            // Українські словники
+            string[] onesMasculine = { "", "один", "два", "три", "чотири", "п’ять", "шість", "сім", "вісім", "дев’ять" };
+            string[] onesFeminine = { "", "одна", "дві", "три", "чотири", "п’ять", "шість", "сім", "вісім", "дев’ять" };
+            string[] teens = { "десять", "одинадцять", "дванадцять", "тринадцять", "чотирнадцять", "п’ятнадцять", "шістнадцять", "сімнадцять", "вісімнадцять", "дев’ятнадцять" };
+            string[] tens = { "", "", "двадцять", "тридцять", "сорок", "п’ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев’яносто" };
+            string[] hundreds = { "", "сто", "двісті", "триста", "чотириста", "п’ятсот", "шістсот", "сімсот", "вісімсот", "дев’ятсот" };
+
+            // Допоміжна функція для формування трійки чисел
+            string TripletToWords(int n, bool isFeminine)
+            {
+                string[] ones = isFeminine ? onesFeminine : onesMasculine;
+                int h = n / 100;
+                int t = (n / 10) % 10;
+                int o = n % 10;
+
+                string result = hundreds[h];
+
+                if (t == 1)
+                    result += " " + teens[o];
+                else
+                {
+                    if (t > 1) result += " " + tens[t];
+                    if (o > 0) result += " " + ones[o];
+                }
+
+                return result.Trim();
+            }
+
+            // Розбираємо число по розрядах
+            int billions = number / 1_000_000_000;
+            int millions = (number / 1_000_000) % 1000;
+            int thousands = (number / 1000) % 1000;
+            int rest = number % 1000;
+
+            string words = "";
+
+            if (billions > 0)
+            {
+                words += TripletToWords(billions, false) + " " + GetForm(billions, "мільярд") + " ";
+            }
+            if (millions > 0)
+            {
+                words += TripletToWords(millions, false) + " " + GetForm(millions, "мільйон") + " ";
+            }
+            if (thousands > 0)
+            {
+                words += TripletToWords(thousands, true) + " " + GetForm(thousands, "тисяча") + " ";
+            }
+            if (rest > 0 || number == 0)
+            {
+                words += TripletToWords(rest, unit == "грн");
+            }
+
+            return words.Trim();
         }
+
+        // Повертає правильну форму одиниці виміру ("метр", "метри", "метрів" тощо)
         static string UnitToWords(int number, string unit)
         {
+            int lastDigit = number % 10;
+            int lastTwo = number % 100;
+
             if (unit == "м")
             {
-                if (number == 1) return "метр";
-                else if (number >= 2 && number <= 4) return "метри";
+                if (lastDigit == 1 && lastTwo != 11) return "метр";
+                else if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return "метри";
                 else return "метрів";
             }
             else if (unit == "грн")
             {
-                if (number == 1) return "гривня";
-                else if (number >= 2 && number <= 4) return "гривні";
+                if (lastDigit == 1 && lastTwo != 11) return "гривня";
+                else if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return "гривні";
                 else return "гривень";
             }
+
             return unit;
+        }
+
+        // Вибирає правильну форму для мільйонів/тисяч/мільярдів
+        static string GetForm(int number, string baseWord)
+        {
+            int lastDigit = number % 10;
+            int lastTwo = number % 100;
+
+            if (baseWord == "мільйон" || baseWord == "мільярд")
+            {
+                if (lastDigit == 1 && lastTwo != 11) return baseWord;
+                else if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return baseWord + "и";
+                else return baseWord + "ів";
+            }
+            else if (baseWord == "тисяча")
+            {
+                if (lastDigit == 1 && lastTwo != 11) return "тисяча";
+                else if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return "тисячі";
+                else return "тисяч";
+            }
+
+            return baseWord;
         }
     }
 }
