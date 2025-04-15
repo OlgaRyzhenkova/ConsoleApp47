@@ -14,6 +14,7 @@ namespace ProjectForLaba4
             string result = ConvertNumbersToWords(input);
             Console.WriteLine("Результат:");
             Console.WriteLine(result);
+            Console.ReadLine();
         }
         static string ConvertNumbersToWords(string input)
         {
