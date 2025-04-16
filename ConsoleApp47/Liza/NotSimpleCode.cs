@@ -38,7 +38,7 @@ namespace ProjectForLaba4
                     {
                         string prevWord = parts[i - 1];
                         for (int j = prevWord.Length - 1; j >= 0; j--)
-                        {
+                        {   
                             if (char.IsLetter(prevWord[j]))
                             {
                                 prevChar = prevWord[j];

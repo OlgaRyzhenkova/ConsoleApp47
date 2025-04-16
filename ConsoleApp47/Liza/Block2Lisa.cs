@@ -34,9 +34,9 @@ namespace ProjectForLaba4
                             NotSimpleCode.NotVayBlock();
                             break;
                         case 3:
-                            stayInSubMenu2 = false;
                             Console.WriteLine("Повернення до головного меню...");
-                            return true;
+                            Program.Main(Array.Empty<string>());
+                            break;
                         default:
                             Console.WriteLine("Неправильний вибір. Спробуйте ще раз.");
                             break;
