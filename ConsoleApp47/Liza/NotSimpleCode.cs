@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Linq;
+
 namespace ProjectForLaba4
 {
     public class NotSimpleCode
@@ -17,10 +18,7 @@ namespace ProjectForLaba4
         }
         public static string CorrectPrepositions(string inputText)
         {
-            if (string.IsNullOrEmpty(inputText))
-            {
-                return inputText;
-            }
+            if (string.IsNullOrEmpty(inputText)) return inputText;
             StringBuilder result = new StringBuilder();
             string[] parts = inputText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -38,7 +36,7 @@ namespace ProjectForLaba4
                     {
                         string prevWord = parts[i - 1];
                         for (int j = prevWord.Length - 1; j >= 0; j--)
-                        {   
+                        {
                             if (char.IsLetter(prevWord[j]))
                             {
                                 prevChar = prevWord[j];
@@ -46,7 +44,6 @@ namespace ProjectForLaba4
                             }
                         }
                     }
-
                     if (i < parts.Length - 1)
                     {
                         string nextWord = parts[i + 1];
@@ -67,13 +64,19 @@ namespace ProjectForLaba4
                     bool prevIsVowel = prevChar.HasValue && IsUkrainianVowel(prevChar.Value);
                     bool nextIsVowel = nextChar.HasValue && IsUkrainianVowel(nextChar.Value);
 
-                    if (originalIsV && prevIsConsonant && nextIsConsonant)
+                    if (prevChar.HasValue && nextChar.HasValue)
                     {
-                        correctedPart = char.IsUpper(currentPart[0]) ? "У" : "у";
+                        if (originalIsV && prevIsConsonant && nextIsConsonant)
+                            correctedPart = char.IsUpper(currentPart[0]) ? "У" : "у";
+                        else if (originalIsU && prevIsVowel && nextIsVowel)
+                            correctedPart = char.IsUpper(currentPart[0]) ? "В" : "в";
                     }
-                    else if (originalIsU && prevIsVowel && nextIsVowel)
+                    else if (!prevChar.HasValue && nextChar.HasValue)
                     {
-                        correctedPart = char.IsUpper(currentPart[0]) ? "В" : "в";
+                        if (originalIsU && IsUkrainianVowel(nextChar.Value))
+                            correctedPart = char.IsUpper(currentPart[0]) ? "В" : "в";
+                        else if (originalIsV && IsUkrainianConsonant(nextChar.Value))
+                            correctedPart = char.IsUpper(currentPart[0]) ? "У" : "у";
                     }
                 }
                 result.Append(correctedPart);
@@ -93,7 +96,6 @@ namespace ProjectForLaba4
             string correctedText = CorrectPrepositions(inputText);
             Console.WriteLine("\nВиправлений текст:");
             Console.WriteLine(correctedText);
-
             Console.WriteLine("\nНатисніть Enter, щоб продовжити...");
             Console.ReadLine();
         }

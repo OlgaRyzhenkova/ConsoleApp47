@@ -6,6 +6,9 @@ namespace ProjectForLaba4
     {
         public static void VayBlock()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+
             Console.WriteLine("Введіть рядок тексту:");
             string input = Console.ReadLine();
 
@@ -22,29 +25,58 @@ namespace ProjectForLaba4
             Console.WriteLine("\nНатисніть Enter, щоб продовжити...");
             Console.ReadLine();
         }
+
         static string ReplacePrepositions(string text)
         {
             string[] words = text.Split(' ');
-            for (int i = 1; i < words.Length - 1; i++)
+            for (int i = 0; i < words.Length; i++)
             {
-                if ((words[i] == "в" || words[i] == "у") &&
-                    words[i - 1].Length > 0 && words[i + 1].Length > 0)
+                if (words[i] == "в" || words[i] == "у")
                 {
-                    char lastCharPrev = words[i - 1][^1];
-                    char firstCharNext = words[i + 1][0];
+                    char? lastCharPrev = i > 0 ? GetLastLetter(words[i - 1]) : null;
+                    char? firstCharNext = i < words.Length - 1 ? GetFirstLetter(words[i + 1]) : null;
 
-                    if (IsConsonant(lastCharPrev) && IsConsonant(firstCharNext) && words[i] == "в")
+                    if (lastCharPrev.HasValue && firstCharNext.HasValue)
                     {
-                        words[i] = "у";
+                        if (IsConsonant(lastCharPrev.Value) && IsConsonant(firstCharNext.Value) && words[i] == "в")
+                        {
+                            words[i] = "у";
+                        }
+                        else if (IsVowel(lastCharPrev.Value) && IsVowel(firstCharNext.Value) && words[i] == "у")
+                        {
+                            words[i] = "в";
+                        }
                     }
-                    else if (IsVowel(lastCharPrev) && IsVowel(firstCharNext) && words[i] == "у")
+                    else if (!lastCharPrev.HasValue && firstCharNext.HasValue)
                     {
-                        words[i] = "в";
+                        if (IsVowel(firstCharNext.Value) && words[i] == "у")
+                            words[i] = "в";
+                        else if (IsConsonant(firstCharNext.Value) && words[i] == "в")
+                            words[i] = "у";
                     }
                 }
             }
             return string.Join(" ", words);
         }
+
+        static char? GetFirstLetter(string word)
+        {
+            foreach (char c in word)
+            {
+                if (char.IsLetter(c)) return c;
+            }
+            return null;
+        }
+
+        static char? GetLastLetter(string word)
+        {
+            for (int i = word.Length - 1; i >= 0; i--)
+            {
+                if (char.IsLetter(word[i])) return word[i];
+            }
+            return null;
+        }
+
         static bool IsConsonant(char c)
         {
             return "бвгґджзйклмнпрстфхцчшщ".Contains(Char.ToLower(c));
