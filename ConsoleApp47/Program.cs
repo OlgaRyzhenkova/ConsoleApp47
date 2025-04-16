@@ -175,9 +175,7 @@ namespace ProjectForLaba4
                         Console.WriteLine("Некоректний вибір! Спробуйте ще раз.");
                         break;
                 }
-
-                // Пауза в головному меню, тільки якщо не виходимо з програми
-                if (isTrue && choice != 1 && choice != 2 && choice != 3) // Уникаємо подвійної паузи
+                if (isTrue && choice != 1 && choice != 2 && choice != 3) 
                 {
                     Console.WriteLine("\nНатисніть Enter для продовження...");
                     Console.ReadLine();
