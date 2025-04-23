@@ -25,44 +25,53 @@ namespace ConsoleApp47
             Console.WriteLine("\nРезультат перетворення: " + result);
         }
 
-        private static string UsingString(string input)
+        static string UsingString(string input)
         {
-            string digits = "";
-            string letters = "";
+            string result = "";
 
-            foreach (char ch in input)
+            foreach (char c in input)
             {
-                if (char.IsDigit(ch))
+                if (char.IsDigit(c))
                 {
-                    digits += ch;
+                    result += c;
                 }
-                else if (char.IsLetter(ch) && ch <= 127)
+                else if (char.IsLetter(c))
                 {
-                    letters = ch + letters;
+                    result = c + result; 
                 }
             }
 
-            return digits + letters;
+            return result;
         }
 
-        private static string UsingStringBuilder(string input)
+        static string UsingStringBuilder(string input)
         {
-            StringBuilder digits = new StringBuilder();
-            StringBuilder letters = new StringBuilder();
+            StringBuilder result = new StringBuilder();
 
-            foreach (char ch in input)
+            foreach (char c in input)
             {
-                if (char.IsDigit(ch))
+                if (char.IsDigit(c))
                 {
-                    digits.Append(ch);
+                    result.Append(c);
                 }
-                else if (char.IsLetter(ch) && ch <= 127)
+                else if (char.IsLetter(c))
                 {
-                    letters.Insert(0, ch);
+                    result.Insert(result.Length - CountDigits(result), c);
                 }
             }
 
-            return digits.ToString() + letters.ToString();
+            return result.ToString();
+        }
+
+        static int CountDigits(StringBuilder sb)
+        {
+            int count = 0;
+            foreach (char c in sb.ToString())
+            {
+                if (char.IsDigit(c))
+                    count++;
+            }
+            return count;
         }
     }
 }
